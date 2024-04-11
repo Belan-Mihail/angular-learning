@@ -1,59 +1,68 @@
-<h1>Title: {{title }}</h1>
+<h1>Title: {{ title }}</h1>
 
 <div>
-  <p>{{user.name}}</p>
+  <p>{{ user.name }}</p>
   <p>{{ user.age }}</p>
 </div>
 
 <!-- one way bind. data from component -> template -->
 <a href="#" [title]="tooltip"></a>
-<br>
+<br />
 <!-- alternative syntax -->
 <a href="#" bind-title="tooltip"></a>
 
 <!-- styles -->
-<p [class]='cssClass'>Red color</p>
+<p [class]="cssClass">Red color</p>
 <p [style]="inlineStyles">Red color inline style</p>
 
 <!-- ++++++++++++ '' need to add more-->
-<p [style.width]="'50%'">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est optio voluptate corporis nam consequuntur laboriosam?</p>
+<p [style.width]="'50%'">
+  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est optio voluptate
+  corporis nam consequuntur laboriosam?
+</p>
 
 <!-- +++++++++++++ -->
-<p [style.width.%]="50">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est optio voluptate corporis nam consequuntur laboriosam?</p>
+<p [style.width.%]="50">
+  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est optio voluptate
+  corporis nam consequuntur laboriosam?
+</p>
 
 <!-- +++++++++++++ -->
-<p [style.width.%]="widthNumber">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est optio voluptate corporis nam consequuntur laboriosam?</p>
+<p [style.width.%]="widthNumber">
+  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est optio voluptate
+  corporis nam consequuntur laboriosam?
+</p>
 
 <!-- pipes -->
 <h2>{{ title | lowercase }}</h2>
-<h2>{{ title | uppercase}}</h2>
-<h3>{{ 'some title' | uppercase }}</h3>
-<h4>{{ 'some text and ' + title | lowercase }}</h4>
+<h2>{{ title | uppercase }}</h2>
+<h3>{{ "some title" | uppercase }}</h3>
+<h4>{{ "some text and " + title | lowercase }}</h4>
 
 <!-- Each Word With Capital -->
-<h4>{{ 'some text and ' + title | titlecase }}</h4>
+<h4>{{ "some text and " + title | titlecase }}</h4>
 
 <!-- pipe json. convert object to string -->
 <!-- {"name": "Mike", "age": "35"} -->
-<p>{{ user | json}}</p>
+<p>{{ user | json }}</p>
 
 <!-- pipe slice -->
-<p>{{'some text' | slice: 2}}</p> 
+<p>{{ "some text" | slice : 2 }}</p>
 <!-- me text -->
 
-<p>{{'some text' | slice: 2 : 4}}</p> 
+<p>{{ "some text" | slice : 2 : 4 }}</p>
 <!-- me -->
 
 <!-- date pipe. convert data to normal -->
-<p>{{someDate | date }}</p>
+<p>{{ someDate | date }}</p>
 <!-- Apr 10, 2024 -->
 
 <!-- we can change format use new date format as parametr -->
-<p>{{someDate | date:'MM/dd/yyyy' }}</p>
+<p>{{ someDate | date : "MM/dd/yyyy" }}</p>
 <!-- 04.10.2024 -->
 
 <!-- we can use sevelar pipes together -->
-<p>{{someDate | date:'MM/dd/yyyy' | slice:0:3 }}</p>
+<p>{{ someDate | date : "MM/dd/yyyy" | slice : 0 : 3 }}</p>
 <!-- 04 -->
 
 <!-- to create custom pipe we can use "ng g pipe pipes/cut-text -->
@@ -61,8 +70,41 @@
 <!-- pipes/cut-text == path to new pipe (start from folder app) -->
 
 <!-- lorem150 -->
-<p>{{Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, enim. Quod quam nemo iure porro adipisci sed, nesciunt neque harum quos ipsum cupiditate qui sint consectetur doloremque temporibus inventore labore fugit, earum id ratione dolore quaerat sapiente. Ab nihil ullam ducimus at obcaecati excepturi reprehenderit architecto, molestias sed ex doloremque mollitia facilis, laborum adipisci, quia quae. Debitis accusamus laboriosam error iure ipsam cupiditate maiores sed quibusdam optio, sunt suscipit mollitia necessitatibus quia dolor accusantium pariatur quod non cumque, quaerat at maxime, sequi soluta! Alias, expedita, officia amet repudiandae atque dicta porro repellat dolorem ratione officiis soluta doloremque nam impedit voluptatibus ab mollitia recusandae quae doloribus! Accusantium eum qui commodi minima recusandae cupiditate assumenda ea animi cumque suscipit. Culpa, incidunt et ullam consequatur odit architecto atque in iste natus, similique aut adipisci quo dolorem, fuga quidem. Magni illo eligendi ea. Dolorem veniam sit molestiae aperiam vitae commodi velit beatae aut officiis.}} | cutText </p>
+<!-- <p>{{Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, enim. Quod quam nemo iure porro adipisci sed, nesciunt neque harum quos ipsum cupiditate qui sint consectetur doloremque temporibus inventore labore fugit, earum id ratione dolore quaerat sapiente. Ab nihil ullam ducimus at obcaecati excepturi reprehenderit architecto, molestias sed ex doloremque mollitia facilis, laborum adipisci, quia quae. Debitis accusamus laboriosam error iure ipsam cupiditate maiores sed quibusdam optio, sunt suscipit mollitia necessitatibus quia dolor accusantium pariatur quod non cumque, quaerat at maxime, sequi soluta! Alias, expedita, officia amet repudiandae atque dicta porro repellat dolorem ratione officiis soluta doloremque nam impedit voluptatibus ab mollitia recusandae quae doloribus! Accusantium eum qui commodi minima recusandae cupiditate assumenda ea animi cumque suscipit. Culpa, incidunt et ullam consequatur odit architecto atque in iste natus, similique aut adipisci quo dolorem, fuga quidem. Magni illo eligendi ea. Dolorem veniam sit molestiae aperiam vitae commodi velit beatae aut officiis.}} | cutText </p> -->
 
 <!-- maxLengt it is default value. we can change it -->
-<p>{{Lorem ipsum dolor }} | cutText:10 </p>
+<!-- <p>{{Lorem ipsum dolor }} | cutText:10 </p> -->
 <!-- Lorem ips... -->
+
+<br />
+<hr />
+<p>{{ ageOfUsers | sortData : "age" | json }}</p>
+<!-- [ { "age": 20 }, { "age": 22 }, { "age": 26 } ] -->
+<br />
+<hr />
+
+<!-- after we used setTimeout at first time => pipes doesnt work with new value -->
+<!-- [ { "age": 20 }, { "age": 22 }, { "age": 26 }, { "age": 16 } ] -->
+
+<!-- wenn we used spread insede TimeOut (second) - all work! -->
+<!-- [ { "age": 16 }, { "age": 20 }, { "age": 22 }, { "age": 26 } ] -->
+
+<br />
+<hr />
+<button [style.color]="color" (click)="color = 'yellow'">Button</button>
+<p [style.color]="color">Paragraph</p>
+
+<!-- we can add event to any elements for example for p -->
+<!-- <p [style.color]="color" (click)="color='yellow'">Paragraph</p>   WORK! -->
+
+<br />
+<hr />
+<button [style.color]="color" (click)="changeColor('orange')">Button</button>
+
+<br />
+<hr />
+<input
+  (input)="checkCurrentValue($event)"
+  (keydown)="this.color = 'pink'"
+  (keydown.shift)="this.color = 'red'"
+/>
