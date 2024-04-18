@@ -1,0 +1,23 @@
+<p>child works!</p>
+<h2 [style.color]="childColorProps">{{name}}</h2>
+
+<button (click)="changeName">Change name</button>
+
+<p>Name child components: {{name}}</p>
+
+<br />
+<hr />
+<header>Header of child component</header>
+<main>
+    <p>Place in child component for HTML</p>
+</main>
+<footer>Footer of child component</footer>
+<ng-content select="p"></ng-content>
+<ng-content select=[someAttribute]></ng-content>
+<ng-content select=.some-class></ng-content>
+<ng-content select=.example></ng-content>
+
+<hr>
+<hr>
+<hr>
+<ng-content select="app-ng-component-example"></ng-content>

@@ -5,17 +5,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CutTextPipe } from './pipes/cut-text.pipe';
 import { SortDataPipe } from './pipes/sort-data.pipe';
-
+import { ChildComponent } from './components/child/child.component';
+import { NgComponentExampleComponent } from './components/ng-component-example/ng-component-example.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     CutTextPipe,
-    SortDataPipe
+    SortDataPipe,
+    ChildComponent,
+    NgComponentExampleComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CommonModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

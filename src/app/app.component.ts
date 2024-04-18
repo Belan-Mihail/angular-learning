@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -44,6 +46,7 @@ export class AppComponent {
 
 
   color='green'
+  parentName:string = 'hello world'
 
   changeColor(newColor:string) {
     this.color = newColor 
@@ -55,4 +58,16 @@ const target = event.target as HTMLInputElement
     console.log(target.value)
   }
   // event.target + clg(target.value) === clg(event.target.value in react)
+
+  setNewName(newName: string) {
+    this.parentName = newName
+  }
+
+
+  toggler: boolean = true
+  visible: string = 'qwert'
+  unvisible: string = ''
+
+
+  arr: any[] = ['text', 123, true, [1, 'asd'], NaN, Symbol ]
 }

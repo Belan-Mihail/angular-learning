@@ -108,3 +108,145 @@
   (keydown)="this.color = 'pink'"
   (keydown.shift)="this.color = 'red'"
 />
+
+<br />
+<hr />
+<app-child
+  [childColor]="color"
+  [(name)]="parentName"
+  (nameChange)="setNewName($event)"
+>
+  <hr />
+  <p style="background-color: orange">
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, quisquam.
+  </p>
+  <div style="background-color: greenyellow" someAttribute>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, quisquam.
+  </div>
+  <article style="background-color: green" class="some-class">
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, quisquam.
+  </article>
+  <hr />
+  <div class="example">
+    <span>Color taken from parent {{ color }}</span>
+  </div>
+  <hr />
+  <hr />
+  <hr />
+  <app-ng-component-example></app-ng-component-example>
+</app-child>
+
+<br />
+<hr />
+<p>Name parent components: {{ parentName }}</p>
+
+<button (click)="setNewName('Name from parent component')">
+  Parent button
+</button>
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+<p>First p</p>
+<ng-template
+  #test
+  let-item
+  let-drink
+  let-firstItem="first"
+  let-someText="someText"
+>
+<!-- $implicit: 'World' = default value. Use in let-item and let-drink -->
+  <p>Second p</p>
+</ng-template>
+<p>Third p</p>
+
+<ng-container
+  *ngTemplateOutlet="test; context: { first: 'hello', $implicit: 'World', someText: '!' }"
+>
+  <span>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum voluptatem
+    maxime laboriosam eum, nihil est odio quibusdam iusto nemo corrupti ad ea
+    magni fugiat autem id placeat libero dicta illo. Illum sed facilis fugiat?
+    Sapiente, laudantium dolor sunt id quod deserunt magni, saepe quaerat ipsam
+    rerum dignissimos repellendus repudiandae praesentium at itaque magnam,
+    neque commodi corporis? Neque perspiciatis, fugiat soluta recusandae tempore
+    amet, cum harum ut consectetur debitis in molestiae eligendi ullam libero
+    eius saepe optio nisi reprehenderit, ipsa voluptatibus?
+  </span>
+</ng-container>
+
+
+<h2>/*ngIf</h2>
+<hr />
+<hr />
+<hr />
+<p *ngIf="toggler">Toggler p</p>
+
+<button (click)="toggler = !toggler">Button</button>
+
+<h2>ngIf from string const (convert to bolean)</h2>
+<hr />
+<hr />
+<hr />
+<p *ngIf="visible">Visible p</p>
+<p *ngIf="unvisible">Unvisible p</p>
+
+
+<h2>ngIf and else</h2>
+<hr />
+<hr />
+<hr />
+<p *ngIf="toggler; else test">
+  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus, totam?
+</p>
+
+
+<button (click)="toggler = !toggler">Button</button>
+
+<ng-template #test>
+  <p>Ng-template test</p>
+</ng-template>
+
+
+<h2>ng template and then and else</h2>
+<hr />
+<hr />
+<hr />
+<p *ngIf="toggler; then test; else second">
+  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus, totam?
+</p>
+
+
+<button (click)="toggler = !toggler">Button</button>
+
+<ng-template #test>
+  <p>Ng-template test</p>
+</ng-template>
+<ng-template #second>
+  <p>Ng-template test second</p>
+</ng-template>
+
+
+<h2>ngFor almost work with arrays</h2>
+<div *ngFor="let item of arr">
+  <span>{{item}}</span>
+</div>
+
+
+<h2>ngFor with additional an ngIf</h2>
+<div *ngFor="let item of arr; let evenItem = even; let currentItem = index">
+  <span *ngIf="eventItem">
+    {{item}}
+  </span>
+  <span style="color: orangr; margin-left: 20px">{{currentItem}}</span>
+</div>
+
+<h2>ngSwitchCase</h2>
+<!-- <div *ngFor="let item of arr" [ngSwitch]="item"> dont work??  -->
+<div *ngFor="let item of arr">
+  <i *ngSwitchCase="123">{{item}}</i>
+  <b *ngSwitchCase="true">{{item}}</b>
+  <span *ngSwitchDefault="">{{item}}</span>
+</div>
